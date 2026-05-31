@@ -1,0 +1,18 @@
+{
+  "name": "ubigi-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node tg-bot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "node-fetch": "^3.3.2",
+    "node-telegram-bot-api": "^0.67.0"
+  }
+}
