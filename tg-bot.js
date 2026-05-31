@@ -13,6 +13,11 @@ if (token === 'BURAYA_TELEGRAM_BOT_TOKENINIZI_YAZIN') {
     process.exit(1);
 }
 
+// Sadece sizin kullanmanızı sağlamak için yetkili Chat ID (Telegram Kullanıcı ID'niz)
+// Kendi ID'nizi öğrenmek için Telegram'da @userinfobot 'a mesaj atabilirsiniz.
+const ALLOWED_USER_ID = process.env.ALLOWED_USER_ID || '6698095710';
+
+
 // Bot'u polling (sürekli dinleme) modunda başlat
 const bot = new TelegramBot(token, { polling: true });
 
@@ -287,11 +292,23 @@ const activeJobs = new Map();
 
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
+    
+    // Yetki Kontrolü
+    if (ALLOWED_USER_ID !== 'BURAYA_KENDI_CHAT_IDNIZI_YAZIN' && chatId.toString() !== ALLOWED_USER_ID) {
+        return bot.sendMessage(chatId, `🚫 Yetkisiz erişim! Bu bot özeldir ve başkası tarafından kullanılamaz.\nSizin Chat ID'niz: ${chatId}`);
+    }
+
     bot.sendMessage(chatId, "👋 Merhaba! Ben Ubigi eSIM Botuyum.\n\nBir veya birden fazla eSIM üretmek için komutu şu şekilde kullanabilirsiniz:\n\n`/uret <sayı>`\n\nÖrnek: `/uret 1` veya `/uret 3`", { parse_mode: "Markdown" });
 });
 
 bot.onText(/\/uret (\d+)/, async (msg, match) => {
     const chatId = msg.chat.id;
+    
+    // Yetki Kontrolü
+    if (ALLOWED_USER_ID !== 'BURAYA_KENDI_CHAT_IDNIZI_YAZIN' && chatId.toString() !== ALLOWED_USER_ID) {
+        return bot.sendMessage(chatId, `🚫 Yetkisiz işlem denemesi.`);
+    }
+
     const count = parseInt(match[1]);
 
     if (count < 1 || count > 10) {
