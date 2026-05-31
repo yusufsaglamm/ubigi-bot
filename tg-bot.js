@@ -15,7 +15,7 @@ if (token === 'BURAYA_TELEGRAM_BOT_TOKENINIZI_YAZIN') {
 
 // Sadece sizin kullanmanızı sağlamak için yetkili Chat ID (Telegram Kullanıcı ID'niz)
 // Kendi ID'nizi öğrenmek için Telegram'da @userinfobot 'a mesaj atabilirsiniz.
-const ALLOWED_USER_ID = process.env.ALLOWED_USER_ID || '6698095710';
+const ALLOWED_USER_ID = process.env.ALLOWED_USER_ID || '6698095710 || 8098200755';
 
 
 // Bot'u polling (sürekli dinleme) modunda başlat
