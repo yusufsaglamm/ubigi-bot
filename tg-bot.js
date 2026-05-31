@@ -1,5 +1,4 @@
-// Render'daki Node versiyonuna göre native fetch veya modül fetch ayarı
-const fetch = global.fetch || (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = require('node-fetch');
 const TelegramBot = require('node-telegram-bot-api');
 
 // dotenv yüklemesini opsiyonel yapalım, belki .env dosyası kullanmak istersiniz
